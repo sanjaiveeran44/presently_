@@ -1,0 +1,34 @@
+html, body, #root, .Home {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.Home {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.menu {
+    width: 20%;
+    background-color: #f0f2f5;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.center {
+    width: 60%;
+    background-color: #ffffff;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.right {
+    width: 20%;
+    background-color: #f8f9fa;
+    padding: 20px;
+    overflow-y: auto;
+}
