@@ -7,4 +7,7 @@
   font-family: "Poppins", sans-serif;
   position: relative;
   z-index: 5;
+  
+  height: 10%;
+  margin-bottom: 0;
 }
