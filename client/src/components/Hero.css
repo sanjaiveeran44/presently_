@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
-
+/* for css */
 .hero {
   position: relative;
   z-index: 10;
@@ -17,7 +17,7 @@
   margin-top: 200px;
 }
 
-.expand-btn {
+.get-btn {
   margin-top: 60px;
   position: relative;
   overflow: hidden;
@@ -45,11 +45,11 @@
 }
 
 
-.expand-btn:hover {
+.get-btn:hover {
   padding-right: 44px;     
  
 }
 
-.expand-btn:hover .arrow {
+.get-btn:hover .arrow {
   transform: translateX(10px);  
 }

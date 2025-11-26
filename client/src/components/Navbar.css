@@ -25,6 +25,7 @@
   font-family: "JetBrains Mono", "Courier New", monospace; /* ⬅ monospace */
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
+  border-radius: 8px;
 
   display: inline-block;
   transform: translateY(0);

@@ -8,7 +8,7 @@ export default function Hero() {
         FOR TEACHERS & STUDENTS
       </h1>
 
-      <button className="expand-btn">
+      <button className="get-btn">
         Get Started <span className="arrow">→</span>
       </button>
 
