@@ -1,14 +1,11 @@
-import { useState } from 'react'
-import LandingPage from './pages/landingPage'
+import { useState } from 'react';
+import LandingPage from './pages/landingPage';
+import './App.css';
 
 function App() {
-  
-
-  return(
-    <>
+  return (
     <LandingPage />
-    </>
-  )
+  );
 }
 
-export default App
+export default App;

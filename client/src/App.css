@@ -1,0 +1,39 @@
+/* App-wide styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+#root {
+  background: url('./assets/bg.png') no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* Add a dark overlay for better text readability */
+#root::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+/* Make sure content is above the overlay */
+#root > * {
+  position: relative;
+  z-index: 2;
+}
