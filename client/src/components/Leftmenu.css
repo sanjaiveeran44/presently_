@@ -1,0 +1,137 @@
+.left-menu-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  color: rgb(213, 208, 208);
+  font-family: "Poppins", sans-serif;
+  background-color: black;
+}
+
+/* LOGO */
+.lm-logo {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.logo-p {
+  font-size: 34px;
+  font-weight: 700;
+  color: #4da4ff;
+  margin-right: 4px;
+}
+
+/* UPLOAD BUTTON */
+.upload-btn {
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  backdrop-filter: blur(6px);
+}
+
+.upload-btn:hover {
+  background: rgba(77,164,255,0.3);
+  border-color: #4da4ff;
+}
+
+/* SLIDES */
+.lm-slides-title {
+  margin-top: 25px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #a8c7ff;
+}
+
+.lm-slides-list {
+  margin-top: 10px;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+/* Hide ugly scrollbar  */
+.lm-slides-list::-webkit-scrollbar {
+  width: 5px;
+}
+.lm-slides-list::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
+
+/* Slide thumbnail */
+.slide-thumb {
+  padding: 12px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 0.3s;
+}
+
+.slide-thumb:hover {
+  background: rgba(255,255,255,0.12);
+}
+
+.slide-thumb.active {
+  border: 1px solid #4da4ff;
+  background: rgba(77,164,255,0.15);
+}
+
+/* TOOLS */
+.lm-tools-title {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #a8c7ff;
+}
+
+.tool-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: white;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: 0.3s;
+}
+
+.tool-btn:hover {
+  background: rgba(77,164,255,0.25);
+  border-color: #4da4ff;
+}
+
+/* FOOTER */
+.lm-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.lm-footer span {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.lm-footer span:hover {
+  opacity: 1;
+}
+.slide-thumb.active {
+  border: 1px solid #4da4ff;
+  background: rgba(77,164,255,0.18);
+  box-shadow: 0 0 10px rgba(77,164,255,0.4);
+  color: #a8cfff;
+}

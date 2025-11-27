@@ -1,13 +1,13 @@
 import React from 'react';
 import './homePage.css';
+import Leftmenu from '../components/Leftmenu'
 
 export default function HomePage() {
     return (
         <div className="Home">
             <aside className="menu">
              
-                <h3>Menu</h3>
-                <p>Menu items will go here</p>
+                <Leftmenu/>
             </aside>
             
             <main className="center">
