@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import LeftMenu from '../components/LeftMenu';
 import CenterContainer from '../components/CenterContainer';
 import RightPanel from '../components/RightPanel';
+import Navbar from '../components/LandingNavbar';
+import Footer from '../components/LandingFooter';
 import './homePage.css';
 
 
@@ -11,7 +13,8 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <nav className="navbar">
+      <Navbar />
+      {/* <nav className="navbar">
         <div className="navbar-left">
           <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <span></span>
@@ -28,7 +31,7 @@ const Home = () => {
           <a href="#about">About</a>
           <a href="#services">Services</a>
         </div>
-      </nav>
+      </nav> */}
 
       <div className="main-content">
         <LeftMenu 
@@ -47,8 +50,7 @@ const Home = () => {
           onClose={() => setIsChatOpen(false)}
         />
       </div>
-      
-      
+      <Footer />
     </div>
   );
 };

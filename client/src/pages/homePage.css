@@ -11,10 +11,17 @@ body {
 
 .home-container {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  position: relative;
+  margin-top: 70px; /* Height of the navbar */
+  min-height: calc(100vh - 70px); /* Viewport height minus navbar */
 }
 
 .navbar {
