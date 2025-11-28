@@ -1,0 +1,98 @@
+.center-container {
+  flex: 1;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background: #0b0e13; 
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+/* TOP TOOLBAR */
+.cc-top-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.cc-tool-btn {
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  backdrop-filter: blur(4px);
+}
+
+.cc-tool-btn:hover {
+  background: rgba(77,164,255,0.25);
+  border-color: #4da4ff;
+}
+
+/* SLIDE VIEWER */
+.cc-slide-viewer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-preview-box {
+  width: 70%;
+  height: 75%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+}
+
+.slide-preview-text {
+  opacity: 0.6;
+}
+
+/* BOTTOM CONTROLS */
+.cc-bottom-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  padding: 10px 18px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+}
+
+.nav-btn:hover {
+  background: rgba(77,164,255,0.25);
+  border-color: #4da4ff;
+}
+
+/* VOICE STATUS */
+.voice-status {
+  opacity: 0.7;
+  font-size: 14px;
+}
+
+/* SLIDE NUMBER */
+.slide-number-box {
+  font-size: 14px;
+  opacity: 0.8;
+}

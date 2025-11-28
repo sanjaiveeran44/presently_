@@ -1,25 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './homePage.css';
 import Leftmenu from '../components/Leftmenu'
+import CenterContainer from '../components/CenterContainer'
+import RightPanel from '../components/RightPanel'
 
 export default function HomePage() {
+
+    const [isChatOpen , setIsChatOpen] = useState(false);
     return (
         <div className="Home">
             <aside className="menu">
              
-                <Leftmenu/>
+                <Leftmenu isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen}/>
             </aside>
             
             <main className="center">
                 
-                <h2>Presentation Area</h2>
-                <p>Your slides/content will appear here</p>
+                <CenterContainer/>
             </main>
             
             <aside className="right">
                
-                <h3>AI Assistant</h3>
-                <p>Chat interface will appear here</p>
+                {/* <RightPanel isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen}/> */}
             </aside>
         </div>
     );
