@@ -1,70 +1,39 @@
-import React, { useState, useRef } from "react";
-import "./LeftMenu.css";
+import React, { useState } from 'react';
+import './Leftmenu.css';
 
-export default function LeftMenu({ totalSlides = 10 , isChatOpen , setIsChatOpen }) {
-  const [active, setActive] = useState(1);
-  const fileInput = useRef();
-    
-  const handleUploadClick = () => {
-    fileInput.current.click();
-  };
-  
-
-  // Dynamic slide list
-  const slides = Array.from({ length: totalSlides }, (_, i) => i + 1);
+// LeftMenu Component
+const LeftMenu = ({ isOpen, onClose, onOpenChat }) => {
+  const slides = ['Slide 1: Introduction', 'Slide 2: Overview', 'Slide 3: Details'];
 
   return (
-    <div className="left-menu-container">
+    <div className={`left-menu ${isOpen ? 'open' : 'closed'}`}>
+      <div className="left-menu-header">
+        <button className="close-btn" onClick={onClose}>✕</button>
+      </div>
       
-      {/* LOGO */}
-      <div className="lm-logo">
-        <span className="logo-p">P</span>resently
-      </div>
-
-      {/* UPLOAD SECTION */}
-      <div className="lm-upload">
-        <button className="upload-btn" onClick={handleUploadClick}>
-          Upload Slides
-        </button>
-        <input
-          type="file"
-          accept=".ppt,.pptx,.pdf"
-          ref={fileInput}
-          style={{ display: "none" }}
-        />
-      </div>
-
-      {/* SLIDES LIST */}
-      <div className="lm-slides-title">Slides</div>
-
-      <div className="lm-slides-list">
-        {slides.map((num) => (
-          <div
-            key={num}
-            className={`slide-thumb ${active === num ? "active" : ""}`}
-            onClick={() => setActive(num)}
-          >
-            Slide {num}
+      <div className="left-menu-content">
+        <button className="upload-btn">Upload Slides</button>
+        
+        <div className="slides-section">
+          <h3>Slides</h3>
+          <div className="slides-list">
+            {slides.map((slide, index) => (
+              <div key={index} className="slide-item">
+                {slide}
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+        
+        <div className="tools-section">
+          <h3>Tools</h3>
+          <button className="tool-btn">Generate Quiz</button>
+          <button className="tool-btn">AI Summarize</button>
+          <button className="tool-btn" onClick={onOpenChat}>Open Chat Panel</button>
+        </div>
       </div>
-
-      {/* TOOLS */}
-      <div className="lm-tools-title">Tools</div>
-
-      <div className="lm-tools">
-        <button className="tool-btn">Generate Quiz</button>
-        <button className="tool-btn">AI Summarize</button>
-        <button className="tool-btn" onClick={() => setIsChatOpen(true)}>Open Chat Panel</button>
-      </div>
-
-      {/* FOOTER */}
-      <div className="lm-footer">
-        <span>Settings</span>
-        <span>Help</span>
-        <span>Logout</span>
-      </div>
-
     </div>
   );
-}
+};
+
+export default LeftMenu;

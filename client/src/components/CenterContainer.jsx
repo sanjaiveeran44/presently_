@@ -1,43 +1,45 @@
-import React from "react";
-import "./CenterContainer.css";
+import React, { useState } from 'react';
+import './CenterContainer.css';
 
-export default function CenterContainer({isChatOpen, setIsChatOpen}) {
+const CenterContainer = ({ isMenuOpen, isChatOpen }) => {
+  const [currentSlide, setCurrentSlide] = useState(1);
+  const totalSlides = 10;
+
+  const handlePrev = () => {
+    if (currentSlide > 1) setCurrentSlide(currentSlide - 1);
+  };
+
+  const handleNext = () => {
+    if (currentSlide < totalSlides) setCurrentSlide(currentSlide + 1);
+  };
+
   return (
-    <div className="center-container">
-
-      {/* TOP TOOLBAR */}
-      <div className="cc-top-toolbar">
-        <button className="cc-tool-btn">Fullscreen</button>
-        <button className="cc-tool-btn">Zoom In</button>
-        <button className="cc-tool-btn">Zoom Out</button>
+    <div className={`center-section ${isMenuOpen ? 'menu-open' : ''} ${isChatOpen ? 'chat-open' : ''}`}>
+      <div className="slide-viewer">
+        <div className="slide-preview">
+          <div className="slide-content">
+            <h2>Slide {currentSlide}</h2>
+            <p>Your presentation content appears here</p>
+          </div>
+        </div>
+        
+        <div className="slide-controls">
+          <button className="control-btn" onClick={handlePrev} disabled={currentSlide === 1}>
+            ← Prev
+          </button>
+          <span className="slide-counter">{currentSlide} / {totalSlides}</span>
+          <button className="control-btn" onClick={handleNext} disabled={currentSlide === totalSlides}>
+            Next →
+          </button>
+        </div>
+        
+        <button className="voice-mode-btn">
+          🎤 Voice Mode
+        </button>
       </div>
-
-      {/* SLIDE VIEWER */}
-      <div className="cc-slide-viewer">
-        <div className="slide-preview-box">
-          {/* Later we display actual slide here */}
-          <p className="slide-preview-text">Slide Preview Area</p>
-        </div>
-      </div>
-
-      {/* BOTTOM CONTROL SECTION */}
-      <div className="cc-bottom-controls">
-
-        <div className="nav-buttons">
-          <button className="nav-btn">◀ Prev</button>
-          <button className="nav-btn">Next ▶</button>
-        </div>
-
-        <div className="voice-status">
-          Listening / AI Commands status shows here...
-        </div>
-
-        <div className="slide-number-box">
-          Slide: <span>1</span> / <span>10</span>
-        </div>
-
-      </div>
-
     </div>
   );
-}
+};
+
+
+export default CenterContainer;
