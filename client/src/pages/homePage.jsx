@@ -1,37 +1,43 @@
+
 import React, { useState } from 'react';
 import LeftMenu from '../components/LeftMenu';
 import CenterContainer from '../components/CenterContainer';
 import RightPanel from '../components/RightPanel';
-import Navbar from '../components/LandingNavbar';
+import LandingNavbar from '../components/LandingNavbar';
 import Footer from '../components/LandingFooter';
 import './homePage.css';
-
 
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
+  const handleOpenChat = () => {
+    setIsChatOpen(true);
+  };
+
   return (
-    <div className="home-container">
-      <Navbar showMenuButton={true} setIsMenuOpen={setIsMenuOpen} setIsChatOpen={setIsChatOpen}/>
-      <div className="main-content">
-        <LeftMenu 
-          setIsChatOpen={setIsChatOpen}
-          setIsMenuOpen={setIsMenuOpen}
-          isMenuOpen={isMenuOpen}
-        />
-        
-        <CenterContainer
-          isMenuOpen={isMenuOpen} 
-          isChatOpen={isChatOpen}
-        />
-        
-        <RightPanel 
-          setIsChatOpen={setIsMenuOpen} 
-          isChatOpen={isChatOpen}
-        />
+    <div className="home-page">
+      <div className="animated-background">
+        <div className="blob blob-1"></div>
+        <div className="blob blob-2"></div>
+        <div className="blob blob-3"></div>
       </div>
-      <Footer />
+
+      <LandingNavbar showMenuButton={true} setIsMenuOpen={setIsMenuOpen} />
+      
+      <div className="home-content">
+        <LeftMenu 
+          isOpen={isMenuOpen} 
+          onClose={() => setIsMenuOpen(false)}
+          onOpenChat={handleOpenChat}
+        />
+        
+        <CenterContainer isMenuOpen={isMenuOpen} isChatOpen={isChatOpen} />
+        
+        <RightPanel isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+      </div>
+
+      <Footer/>
     </div>
   );
 };

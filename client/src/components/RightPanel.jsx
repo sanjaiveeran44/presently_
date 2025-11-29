@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './RightPanel.css';
 
-const RightPanel = ({setIsChatOpen,isChatOpen}) => {
+const RightPanel = ({ isOpen, onClose }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([
     { text: 'Hello! How can I assist you with your presentation?', sender: 'ai' }
@@ -30,15 +30,17 @@ const RightPanel = ({setIsChatOpen,isChatOpen}) => {
   };
 
   return (
-    <div className={`right-panel ${isChatOpen ? 'open' : 'closed'}`}>
-      <div className="chat-header">
-        <h3>AI Chat</h3>
-        <button className="close-btn" onClick={setIsChatOpen(false)}>✕</button>
+    <div className={`right-panel ${isOpen ? 'open' : 'closed'}`}>
+      <div className="panel-header">
+        <h3 className="panel-title">AI Chat</h3>
+        <button className="panel-close-btn" onClick={onClose}>
+          <span>✕</span>
+        </button>
       </div>
       
-      <div className="messages-area">
+      <div className="chat-messages">
         {messages.map((msg, index) => (
-          <div key={index} className={`message ${msg.sender}`}>
+          <div key={index} className={`chat-message ${msg.sender}`}>
             <div className="message-bubble">{msg.text}</div>
           </div>
         ))}
@@ -50,10 +52,10 @@ const RightPanel = ({setIsChatOpen,isChatOpen}) => {
           onChange={(e) => setMessage(e.target.value)}
           onKeyPress={handleKeyPress}
           placeholder="Type your message..."
-          rows="3"
+          className="chat-textarea"
         />
         <button className="send-btn" onClick={handleSend}>
-          ✈
+          <span className="send-icon">→</span>
         </button>
       </div>
     </div>

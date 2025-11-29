@@ -1,0 +1,203 @@
+/* ==================== LANDING NAVBAR CSS ==================== */
+
+.landing-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(255, 102, 0, 0.1);
+  z-index: 1000;
+  height: 70px;
+}
+
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ==================== HAMBURGER BUTTON ==================== */
+.hamburger-btn {
+  background: transparent;
+  border: 2px solid #ff6600;
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.3s ease;
+  width: 42px;
+  height: 42px;
+  justify-content: center;
+  align-items: center;
+}
+
+.hamburger-btn:hover {
+  background: #ff6600;
+  box-shadow: 0 0 20px rgba(255, 102, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.hamburger-line {
+  width: 22px;
+  height: 2.5px;
+  background: #ff6600;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn:hover .hamburger-line {
+  background: #ffffff;
+}
+
+/* ==================== LOGO ==================== */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(0 2px 8px rgba(255, 102, 0, 0.3));
+  transition: filter 0.3s ease;
+}
+
+.navbar-logo:hover .logo-icon {
+  filter: drop-shadow(0 4px 12px rgba(255, 102, 0, 0.5));
+}
+
+.logo-text {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.logo-presently {
+  background: linear-gradient(135deg, #ff6600 0%, #ffaa44 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-ai {
+  font-size: 18px;
+  color: #666;
+  font-weight: 600;
+}
+
+/* ==================== NAVBAR LINKS ==================== */
+.navbar-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 40px;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff6600, #ffaa44);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ff6600;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 0 20px;
+  }
+
+  .navbar-links {
+    display: none;
+  }
+
+  .logo-text {
+    font-size: 20px;
+  }
+
+  .logo-ai {
+    font-size: 16px;
+  }
+
+  .logo-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .hamburger-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .hamburger-line {
+    width: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-navbar {
+    height: 60px;
+  }
+
+  .navbar-container {
+    padding: 0 15px;
+  }
+
+  .logo-text {
+    font-size: 18px;
+  }
+
+  .logo-ai {
+    font-size: 14px;
+  }
+
+  .navbar-left {
+    gap: 12px;
+  }
+}
