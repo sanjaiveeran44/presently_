@@ -15,6 +15,13 @@ const Home = () => {
     setIsChatOpen(true);
   };
 
+   const sampleSlides = [
+    "https://picsum.photos/900/600?random=1",
+    "https://picsum.photos/900/600?random=2",
+    "https://picsum.photos/900/600?random=3",
+    "https://picsum.photos/900/600?random=4",
+  ];
+
   return (
     <div className="home-page">
       <div className="animated-background">
@@ -32,7 +39,7 @@ const Home = () => {
           onOpenChat={handleOpenChat}
         />
         
-        <CenterContainer isMenuOpen={isMenuOpen} isChatOpen={isChatOpen} />
+        <CenterContainer isMenuOpen={isMenuOpen} isChatOpen={isChatOpen} slides={sampleSlides} />
         
         <RightPanel isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
       </div>

@@ -2,11 +2,10 @@
 import React, { useState } from 'react';
 import './CenterContainer.css';
 import './RightPanel.css';
-import './Leftmenu.css';
 
-const CenterContainer = ({ isMenuOpen, isChatOpen }) => {
+const CenterContainer = ({ isMenuOpen, isChatOpen ,slides}) => {
   const [currentSlide, setCurrentSlide] = useState(1);
-  const [totalSlides] = useState(12);
+  const [totalSlides] = useState(slides.length);
   const [gotoValue, setGotoValue] = useState('');
 
   const handlePrevious = () => {
@@ -29,10 +28,20 @@ const CenterContainer = ({ isMenuOpen, isChatOpen }) => {
     <div className={`center-section ${isMenuOpen ? 'menu-open' : ''} ${isChatOpen ? 'chat-open' : ''}`}>
       <div className="slide-viewer">
         <div className="slide-content">
-          <div className="slide-placeholder">
-            <div className="slide-number-display">Slide {currentSlide}</div>
-            <p className="slide-subtitle">of {totalSlides}</p>
-          </div>
+           {slides.length > 0 ? (
+            <>
+              <img
+                src={slides[currentSlide - 1]}
+                alt={`Slide ${currentSlide}`}
+                className="slide-image"
+              />
+            </>
+          ) : (
+            <div className="slide-placeholder">
+              <div className="slide-number-display">Upload Slides</div>
+              <p className="slide-subtitle">No slides yet</p>
+            </div>
+          )}
         </div>
       </div>
 
