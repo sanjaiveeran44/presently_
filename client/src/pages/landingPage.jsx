@@ -1,15 +1,16 @@
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import Footer from "../components/Footer";
-import React from "react";
+import LandingNavbar from "../components/LandingNavbar";
+import LandingHero from "../components/LandingHero";
+import LandingFooter from "../components/LandingFooter";
 import "./landingPage.css";
 
-export default function landingPage() {
+const LandingPage = () => {
   return (
-    <div className="landing">
-      <Navbar />
-      <Hero />
-      <Footer />
+    <div className="landing-page">
+      <LandingNavbar showMenuButton={false}/>
+      <LandingHero />
+      <LandingFooter />
     </div>
   );
-}
+};
+
+export default LandingPage;

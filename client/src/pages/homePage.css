@@ -1,0 +1,128 @@
+/* ==================== HOME.CSS ==================== */
+
+.home-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff9f5 0%, #ffffff 50%, #fff5eb 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.home-content {
+  display: flex;
+  min-height: calc(100vh - 70px);
+  position: relative;
+  padding-top: 70px;
+}
+
+/* ==================== ANIMATED BACKGROUND ==================== */
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.blob-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #ff6600 0%, #ffaa44 50%, transparent 70%);
+  top: -100px;
+  left: -100px;
+  animation: float-1 20s infinite;
+}
+
+.blob-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #ffaa44 0%, #ff8833 50%, transparent 70%);
+  bottom: -150px;
+  right: -150px;
+  animation: float-2 25s infinite;
+}
+
+.blob-3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #ff9944 0%, #ffbb66 50%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: float-3 30s infinite;
+}
+
+@keyframes float-1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(100px, 100px) scale(1.1);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes float-2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-80px, -80px) scale(1.15);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes float-3 {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-40%, -60%) scale(1.2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .home-content {
+    flex-direction: column;
+  }
+
+  .blob {
+    filter: blur(60px);
+    opacity: 0.1;
+  }
+
+  .blob-1 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .blob-2 {
+    width: 350px;
+    height: 350px;
+  }
+
+  .blob-3 {
+    width: 250px;
+    height: 250px;
+  }
+}
