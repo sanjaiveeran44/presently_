@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import './Leftmenu.css';
 
 // LeftMenu Component
-const LeftMenu = ({ isOpen, onClose, onOpenChat }) => {
+const LeftMenu = ({setIsMenuOpen,setIsChatOpen,isMenuOpen}) => {
   const slides = ['Slide 1: Introduction', 'Slide 2: Overview', 'Slide 3: Details'];
 
   return (
-    <div className={`left-menu ${isOpen ? 'open' : 'closed'}`}>
+    <div className={`left-menu ${ isMenuOpen ?'open' : 'closed'}`}>
       <div className="left-menu-header">
-        <button className="close-btn" onClick={onClose}>✕</button>
+        <button className="close-btn" onClick={setIsMenuOpen(false)}>✕</button>
       </div>
-      
       <div className="left-menu-content">
         <button className="upload-btn">Upload Slides</button>
         
@@ -29,7 +28,7 @@ const LeftMenu = ({ isOpen, onClose, onOpenChat }) => {
           <h3>Tools</h3>
           <button className="tool-btn">Generate Quiz</button>
           <button className="tool-btn">AI Summarize</button>
-          <button className="tool-btn" onClick={onOpenChat}>Open Chat Panel</button>
+          <button className="tool-btn" onClick={setIsChatOpen(true)}>Open Chat Panel</button>
         </div>
       </div>
     </div>

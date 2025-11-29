@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './RightPanel.css';
 
-const RightPanel = ({ isOpen, onClose }) => {
+const RightPanel = ({setIsChatOpen,isChatOpen}) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([
     { text: 'Hello! How can I assist you with your presentation?', sender: 'ai' }
@@ -30,10 +30,10 @@ const RightPanel = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className={`right-panel ${isOpen ? 'open' : 'closed'}`}>
+    <div className={`right-panel ${isChatOpen ? 'open' : 'closed'}`}>
       <div className="chat-header">
         <h3>AI Chat</h3>
-        <button className="close-btn" onClick={onClose}>✕</button>
+        <button className="close-btn" onClick={setIsChatOpen(false)}>✕</button>
       </div>
       
       <div className="messages-area">

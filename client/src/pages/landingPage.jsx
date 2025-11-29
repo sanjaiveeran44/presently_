@@ -6,7 +6,7 @@ import "./landingPage.css";
 const LandingPage = () => {
   return (
     <div className="landing-page">
-      <LandingNavbar />
+      <LandingNavbar showMenuButton={false}/>
       <LandingHero />
       <LandingFooter />
     </div>

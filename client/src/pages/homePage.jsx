@@ -13,31 +13,12 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Navbar />
-      {/* <nav className="navbar">
-        <div className="navbar-left">
-          <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          <div className="logo">
-            <span className="logo-p">P</span>
-            <span className="logo-text">resently</span>
-          </div>
-        </div>
-        <div className="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-        </div>
-      </nav> */}
-
+      <Navbar showMenuButton={true} setIsMenuOpen={setIsMenuOpen} setIsChatOpen={setIsChatOpen}/>
       <div className="main-content">
         <LeftMenu 
-          isOpen={isMenuOpen} 
-          onClose={() => setIsMenuOpen(false)}
-          onOpenChat={() => setIsChatOpen(true)}
+          setIsChatOpen={setIsChatOpen}
+          setIsMenuOpen={setIsMenuOpen}
+          isMenuOpen={isMenuOpen}
         />
         
         <CenterContainer
@@ -46,8 +27,8 @@ const Home = () => {
         />
         
         <RightPanel 
-          isOpen={isChatOpen} 
-          onClose={() => setIsChatOpen(false)}
+          setIsChatOpen={setIsMenuOpen} 
+          isChatOpen={isChatOpen}
         />
       </div>
       <Footer />
