@@ -5,9 +5,9 @@ import './RightPanel.css';
 
 const CenterContainer = ({ isMenuOpen, isChatOpen ,slides}) => {
   const [currentSlide, setCurrentSlide] = useState(1);
-  const [totalSlides] = useState(slides.length);
+  const [totalSlides] = useState(5);
   const [gotoValue, setGotoValue] = useState('');
-
+  
   const handlePrevious = () => {
     setCurrentSlide(prev => Math.max(1, prev - 1));
   };

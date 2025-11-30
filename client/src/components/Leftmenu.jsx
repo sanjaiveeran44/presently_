@@ -1,11 +1,13 @@
-import { useState ,useEffect} from "react";
+import { useState ,useEffect, useRef} from "react";
 import './Leftmenu.css'
-const LeftMenu = ({ isOpen, onClose, onOpenChat }) => {
-  const [slides] = useState([
+const LeftMenu = ({ isOpen, onClose, onOpenChat, onFileUpload, slides }) => {
+  const [Slides] = useState([
     { id: 1, name: "Introduction.pptx", pages: 12 },
     { id: 2, name: "Market Analysis.pptx", pages: 8 },
     { id: 3, name: "Product Demo.pptx", pages: 15 }
   ]);
+
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     const handleEscape = (e) => {
@@ -42,15 +44,31 @@ const LeftMenu = ({ isOpen, onClose, onOpenChat }) => {
         </div>
 
         <div className="menu-content">
-          <button className="upload-slides-btn">
+          {/* Upload Slides */}
+          <button 
+            className="upload-slides-btn" 
+            onClick={() => fileInputRef.current.click()}
+          >
             <span className="btn-icon">📤</span>
             Upload Slides
           </button>
 
+          <input
+            type="file"
+            accept=".ppt,.pptx,.pdf"
+            ref={fileInputRef}
+            style={{ display: "none" }}
+            onChange={(e) => {
+              if (e.target.files[0]) {
+                onFileUpload(e.target.files[0]);
+              }
+            }}
+          />
+
           <div className="menu-section">
             <h3 className="menu-section-title">Your Slides</h3>
             <div className="slides-list">
-              {slides.map(slide => (
+              {Slides.map(slide => (
                 <div key={slide.id} className="slide-item">
                   <div className="slide-icon">📄</div>
                   <div className="slide-info">
