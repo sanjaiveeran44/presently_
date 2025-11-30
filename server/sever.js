@@ -1,5 +1,7 @@
 const express = require("express");
 const multer = require("multer");
+const dotenv = require("dotenv");
+dotenv.config();
 const cors = require("cors");
 const fs = require("fs-extra");
 const path = require("path");
@@ -76,10 +78,106 @@ app.post("/upload", upload.single("ppt"), async (req, res) => {
       const slideURLs = slideFiles.map(
         file => `http://localhost:5000/slides/${folderId}/${file}`
       );
-      console.log("Slide URLs:", slideURLs);
       return res.json({ slides: slideURLs });
     });
   });
+});
+
+app.post("/ask-ai", async (req, res) => {
+  try {
+    const { prompt, slideImage } = req.body;
+
+    let inputMessage = [];
+
+    // If slide image is included → attach both text + image
+    if (slideImage) {
+      inputMessage.push({
+        role: "user",
+        content: [
+          {
+            type: "input_text",
+            text: `
+            ${prompt}
+
+            FORMAT INSTRUCTIONS:
+            - Respond ONLY in clear bullet points.
+            - No long paragraphs.
+            - Keep points short and simple.
+            - If slide image is provided, explain elements in bullet points.
+            - Use bullets like:
+            • Point
+            • Point
+            • Point
+            `
+            },
+
+          {
+            type: "input_image",
+            image_url: slideImage
+          }
+        ]
+      });
+    } else {
+      // Only text
+      inputMessage.push({
+        role: "user",
+        content: [
+          { type: "input_text", text: prompt }
+        ]
+      });
+    }
+
+    const response = await fetch("https://api.openai.com/v1/responses", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini",
+        input: inputMessage
+      })
+    });
+
+    const data = await response.json();
+
+    // Extract output
+    let answer = "";
+
+    if (data.output_text) {
+      answer = data.output_text;
+    } else if (data.output && data.output[0]?.content) {
+      answer = data.output[0].content.map(c => c.text || "").join("");
+    } else {
+      console.log("⚠ OPENAI EMPTY RESPONSE:", data);
+      answer = "I could not understand the slide. Try rephrasing.";
+    }
+
+    return res.json({ answer });
+
+  } catch (err) {
+    console.error("AI Error:", err);
+    return res.status(500).json({ error: "AI request failed" });
+  }
+});
+
+
+app.get("/slide-base64", async (req, res) => {
+  try {
+    const { url } = req.query;
+    if (!url) return res.status(400).json({ error: "Missing URL" });
+
+    const filePath = url.replace("http://localhost:5000", __dirname);
+
+    const imageBuffer = await fs.readFile(filePath);
+    const base64 = `data:image/png;base64,${imageBuffer.toString("base64")}`;
+
+    res.json({ base64 });
+
+  } catch (err) {
+    console.error("Base64 Error:", err);
+    res.status(500).json({ error: "Failed to convert slide" });
+  }
 });
 
 app.listen(5000, () => {
