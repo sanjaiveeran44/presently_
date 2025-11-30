@@ -10,17 +10,38 @@ import './homePage.css';
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [slides, setSlides] = useState([]);
+  const [loadingSlides, setLoadingSlides] = useState(false);
 
   const handleOpenChat = () => {
     setIsChatOpen(true);
   };
+  const handleUploadFromMenu = async (file) => {
+  try {
+    setLoadingSlides(true); // show loader if you want
 
-   const sampleSlides = [
-    "https://picsum.photos/900/600?random=1",
-    "https://picsum.photos/900/600?random=2",
-    "https://picsum.photos/900/600?random=3",
-    "https://picsum.photos/900/600?random=4",
-  ];
+    const formData = new FormData();
+    formData.append("ppt", file);
+
+    const res = await fetch("http://localhost:5000/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+
+    if (data.slides && Array.isArray(data.slides)) {
+      setSlides(data.slides); 
+      console.log("Slides uploaded successfully:", data.slides);  // update slide images
+    } else {
+      console.error("Backend did not return slides.");
+    }
+  } catch (err) {
+    console.error("Upload failed:", err);
+  } finally {
+    setLoadingSlides(false);
+  }
+};
 
   return (
     <div className="home-page">
@@ -37,9 +58,11 @@ const Home = () => {
           isOpen={isMenuOpen} 
           onClose={() => setIsMenuOpen(false)}
           onOpenChat={handleOpenChat}
+          onFileUpload={handleUploadFromMenu}
+          slides={slides}
         />
         
-        <CenterContainer isMenuOpen={isMenuOpen} isChatOpen={isChatOpen} slides={sampleSlides} />
+        <CenterContainer isMenuOpen={isMenuOpen} isChatOpen={isChatOpen} slides={slides} />
         
         <RightPanel isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
       </div>
