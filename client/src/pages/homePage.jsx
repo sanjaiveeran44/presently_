@@ -62,7 +62,7 @@ const Home = () => {
           slides={slides}
         />
         
-        <CenterContainer isMenuOpen={isMenuOpen} isChatOpen={isChatOpen} slides={slides} />
+        <CenterContainer isMenuOpen={isMenuOpen} isChatOpen={isChatOpen} slides={slides} loadingSlides={loadingSlides}/>
         
         <RightPanel isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
       </div>

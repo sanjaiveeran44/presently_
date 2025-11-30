@@ -1,12 +1,17 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CenterContainer.css';
 import './RightPanel.css';
+import SlideLoader from "../components/SlideLoader";
 
-const CenterContainer = ({ isMenuOpen, isChatOpen ,slides}) => {
+const CenterContainer = ({ isMenuOpen, isChatOpen, slides = [] , loadingSlides}) => {
   const [currentSlide, setCurrentSlide] = useState(1);
-  const [totalSlides] = useState(5);
+  const [totalSlides, setTotalSlides] = useState(slides.length);
   const [gotoValue, setGotoValue] = useState('');
+  
+  useEffect(() => {
+    setTotalSlides(slides.length);
+    setCurrentSlide(1);
+  }, [slides]);
   
   const handlePrevious = () => {
     setCurrentSlide(prev => Math.max(1, prev - 1));
@@ -28,20 +33,21 @@ const CenterContainer = ({ isMenuOpen, isChatOpen ,slides}) => {
     <div className={`center-section ${isMenuOpen ? 'menu-open' : ''} ${isChatOpen ? 'chat-open' : ''}`}>
       <div className="slide-viewer">
         <div className="slide-content">
-           {slides.length > 0 ? (
-            <>
-              <img
-                src={slides[currentSlide - 1]}
-                alt={`Slide ${currentSlide}`}
-                className="slide-image"
-              />
-            </>
-          ) : (
-            <div className="slide-placeholder">
-              <div className="slide-number-display">Upload Slides</div>
-              <p className="slide-subtitle">No slides yet</p>
-            </div>
-          )}
+           {loadingSlides ? (
+            <SlideLoader />
+           ) : slides.length > 0 ? (
+          <img
+            src={slides[currentSlide - 1]}
+            alt={`Slide ${currentSlide}`}
+            className="slide-image"
+          />
+        ) : (
+          <div className="slide-placeholder">
+            <div className="slide-number-display">Upload Slides</div>
+            <p className="slide-subtitle">No slides yet</p>
+          </div>
+        )}
+
         </div>
       </div>
 
@@ -87,4 +93,10 @@ const CenterContainer = ({ isMenuOpen, isChatOpen ,slides}) => {
     </div>
   );
 };
+CenterContainer.defaultProps = {
+  slides: [],
+  isMenuOpen: false,
+  isChatOpen: false
+};
+
 export default CenterContainer;
