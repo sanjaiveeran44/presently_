@@ -18,7 +18,7 @@ const Home = () => {
   };
   const handleUploadFromMenu = async (file) => {
   try {
-    setLoadingSlides(true); // show loader if you want
+    setLoadingSlides(true);
 
     const formData = new FormData();
     formData.append("ppt", file);
@@ -32,7 +32,8 @@ const Home = () => {
 
     if (data.slides && Array.isArray(data.slides)) {
       setSlides(data.slides); 
-      console.log("Slides uploaded successfully:", data.slides);  // update slide images
+      console.log(data.json);
+      console.log("Slides uploaded successfully:", data.slides); 
     } else {
       console.error("Backend did not return slides.");
     }

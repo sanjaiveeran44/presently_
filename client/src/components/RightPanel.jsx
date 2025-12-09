@@ -10,36 +10,22 @@ const RightPanel = ({ isOpen, onClose ,slides}) => {
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
 
-  const sendMessageToAI = async (userMessage) => {
+const sendMessageToAI = async (userMessage) => {
   const slideNum = detectSlideNumber(userMessage, slides.length);
-  let slideBase64 = null;
-
-  if (slideNum) {
-    const slideUrl = slides[slideNum - 1];
-
-    const resImg = await fetch(`http://localhost:5000/slide-base64?url=${encodeURIComponent(slideUrl)}`);
-
-    const imgData = await resImg.json();
-    console.log(imgData);
-
-    slideBase64 = imgData.base64;
-  }
 
   const res = await fetch("http://localhost:5000/ask-ai", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       prompt: userMessage,
-      slideImage: slideBase64
+      slideNum: slideNum || null
     })
   });
 
   const data = await res.json();
+  console.log(data.answer)
   return data.answer;
 };
-
-
-
 
   const detectSlideNumber = (text, totalSlides) => {
     const match = text.match(/slide\s*(\d+)/i);
@@ -50,6 +36,18 @@ const RightPanel = ({ isOpen, onClose ,slides}) => {
 
     return null;
   };
+  const formatMessage = (msg) => {
+  if (msg.sender !== "ai") return msg.text;
+
+  const cleanText = cleanAIOutput(msg.text);
+
+  const lines = cleanText
+    .split(/[.\n]/)
+    .map(l => l.trim())
+    .filter(l => l.length > 0);
+
+  return `<ul>${lines.map(line => `<li>${line}</li>`).join("")}</ul>`;
+};
 
   const scrollToBottom = () => {
     if (chatContainerRef.current) {
@@ -84,6 +82,13 @@ const RightPanel = ({ isOpen, onClose ,slides}) => {
     { text: aiReply, sender: "ai" }
   ]);
 };
+  const cleanAIOutput = (text) => {
+    return text
+      .replace(/[#_*`>\-]+/g, "")        // remove markdown symbols
+      .replace(/\s+/g, " ")              // normalize spaces
+      .trim();
+  };
+
 
 
   const handleKeyPress = (e) => {
@@ -106,7 +111,12 @@ const RightPanel = ({ isOpen, onClose ,slides}) => {
       <div className="chat-messages" ref={chatContainerRef}>
         {messages.map((msg, index) => (
           <div key={index} className={`chat-message ${msg.sender}`}>
-            <div className="message-bubble">{msg.text}</div>
+              <div
+              className="message-bubble"
+              dangerouslySetInnerHTML={{
+                __html: msg.sender === "ai" ? formatMessage(msg) : msg.text
+              }}
+            ></div>
           </div>
         ))}
 
